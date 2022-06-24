@@ -56,22 +56,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="" asp-action="Index" class="navbar-brand">B2BApp</a>
+                <a asp-area="" asp-controller="" asp-action="Index" class="navbar-brand">The Whisky Shop</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if(userRole=="Super user")
                     {
-                        <li><a asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">Product Type</a></li>
-                        <li><a asp-area="Admin" asp-controller="SpecialTags" asp-action="Index">Tag Name</a></li>
-                        <li><a asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a></li>
+                        <li><a asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">Stil</a></li>
+                        <li><a asp-area="Admin" asp-controller="SpecialTags" asp-action="Index">Brand</a></li>
+                        <li><a asp-area="Admin" asp-controller="Product" asp-action="Index">Whisky</a></li>
                     }
                     
                     <li><a asp-area="Customer" asp-controller="Home" asp-action="Cart">
                              <i class="fas fa-shopping-cart"></i>
                              (@count)
                     </a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">Despre noi</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
                 <partial name="_LoginPartial" />

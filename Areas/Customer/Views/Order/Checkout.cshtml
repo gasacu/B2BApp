@@ -16,7 +16,10 @@
 }
 <br/>
 
-<h2 class="text-info">Order Details</h2>
+<h2 class="text-info">DETALII LIVRARE</h2><br />
+<p>Dacă aveți o comandă care depăşește greutatea de 50 kg, comanda va fi pregătită pe palet şi expediată prin compania de transport Pall-Ex.
+Pretul livrării urmează sa vi-l comunicam telefonic și depinde de locația livrării și de greutatea acesteia.</p>
+<br />
 <form id="Order" asp-controller="Order" asp-action="Checkout" method="post" enctype="multipart/form-data">
 
     <div class="p-4 rounded border row">
@@ -26,7 +29,7 @@
         <div class="col-md-6">
              <div class="form-group row">
                <div class="col-md-4">
-                    <label asp-for="Name"></label>
+                    <label asp-for="Name">Nume Companie</label>
                </div>
                <div class="col-md-8">
                   <input asp-for="Name" class="form-control"/>
@@ -36,7 +39,7 @@
 
         <div class="form-group row">
             <div class="col-md-4">
-                <label asp-for="PhoneNo"></label>
+                <label asp-for="PhoneNo">Telefon</label>
             </div>
             <div class="col-md-8">
                 <input asp-for="PhoneNo" class="form-control"/>
@@ -47,7 +50,7 @@
         
         <div class="form-group row">
             <div class="col-md-4">
-                <label asp-for="Address"></label>
+                <label asp-for="Address">Adresa</label>
             </div>
             <div class="col-md-8">
                 <input asp-for="Address" class="form-control"/>
@@ -70,7 +73,7 @@
 
         <div class="form-group row">
             <div class="col-md-4">
-                <label asp-for="OrderDate"></label>
+                <label asp-for="OrderDate">Data</label>
             </div>
             <div class="col-md-8">
                 @*<select asp-for="SpecialTagsId" asp-items="ViewBag.TagId" class="form-control"></select>*@
@@ -85,9 +88,9 @@
                 <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Price</th>
+                        <th>PRODUS</th>
+                        <th>NUME</th>
+                        <th>PRET</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -104,10 +107,10 @@
                 </tbody>
                 </table>
                 <div class="text-right">
-                     <h3>Total Price : @products.Sum(c=>c.Price)</h3>
+                     <h3>Pret Total : @products.Sum(c=>c.Price)</h3>
                 </div>
                 <div class="form-group text-right">
-                    <input type="submit" value="Place Order" class="btn btn-success"/>
+                    <input type="submit" value="PLASEAZA COMANDA" class="btn btn-success"/>
                 </div>  
         </div>
         

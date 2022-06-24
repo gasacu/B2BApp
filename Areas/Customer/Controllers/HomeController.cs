@@ -26,7 +26,7 @@ namespace B2BApp.Controllers
 
         public IActionResult Index(int? page)
         {
-            return View(_db.Products.Include(c=>c.ProductTypes).Include(c=>c.SpecialTags).ToList().ToPagedList(page??1,6));
+            return View(_db.Products.Include(c => c.ProductTypes).Include(c => c.SpecialTags).ToList().ToPagedList(page ?? 1, 6));
         }
 
         public IActionResult About()

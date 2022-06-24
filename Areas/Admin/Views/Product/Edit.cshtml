@@ -4,7 +4,7 @@
 }
 <br/>
 
-<h2 class="text-info">Edit Product</h2>
+<h2 class="text-info">Editeaza Produs</h2><br/>
 <form asp-action="Edit" method="post" enctype="multipart/form-data">
     <div class="p-4 rounded border row">
         <div asp-validation-sumarry="ModelOnly" class="text-danger">
@@ -13,7 +13,7 @@
         <div class="col-md-6">
              <div class="form-group row">
             <div class="col-md-4">
-                <label asp-for="Name"></label>
+                <label asp-for="Name">Nume</label>
             </div>
             <div class="col-md-8">
                 <input type="hidden" asp-for="Id" />
@@ -24,7 +24,7 @@
 
         <div class="form-group row">
             <div class="col-md-4">
-                <label asp-for="Price"></label>
+                <label asp-for="Price">Pret</label>
             </div>
             <div class="col-md-8">
                 <input asp-for="Price" class="form-control"/>
@@ -34,7 +34,7 @@
 
         <div class="form-group row">
             <div class="col-md-4">
-                <label asp-for="Image"></label>
+                <label asp-for="Image">Imagine</label>
             </div>
             <div class="col-md-8">
                 <input asp-for="Image" class="form-control" type="file" />
@@ -44,7 +44,7 @@
 
         <div class="form-group row">
             <div class="col-md-4">
-                <label asp-for="ProductColor"></label>
+                <label asp-for="ProductColor">Tara de origine</label>
             </div>
             <div class="col-md-8">
                 <input asp-for="ProductColor" class="form-control"/>
@@ -54,7 +54,7 @@
 
         <div class="form-group row">
             <div class="col-md-4">
-                <label asp-for="ProductTypeId"></label>
+                <label asp-for="ProductTypeId">Categorie</label>
             </div>
             <div class="col-md-8">
                 <select asp-for="ProductTypeId" asp-items="ViewBag.productTypeId" class="form-control"></select>
@@ -65,7 +65,7 @@
 
         <div class="form-group row">
             <div class="col-md-4">
-                <label asp-for="SpecialTagsId"></label>
+                <label asp-for="SpecialTagsId">Producator</label>
             </div>
             <div class="col-md-8">
                 <select asp-for="SpecialTagsId" asp-items="ViewBag.TagId" class="form-control"></select>
@@ -76,7 +76,7 @@
 
         <div class="form-group row">
             <div class="col-md-4">
-                <label asp-for="IsAvailable"></label>
+                <label asp-for="IsAvailable">Disponibilitate</label>
             </div>
             <div class="col-md-8">
                 <input asp-for="IsAvailable" class="" type="checkbox" />
@@ -85,8 +85,8 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Update"/>
-            <a asp-action="Index" class="btn btn-success">Back to List</a>
+            <input type="submit" class="btn btn-primary" value="Modifica"/>
+            <a asp-action="Index" class="btn btn-success">Inapoi la lista</a>
         </div>
         </div>
         <div class="col-1"></div>

@@ -18,20 +18,20 @@
 }
 
 <br/>
-<h2 class="text-info">Product Details</h2>
+<h2 class="text-info">Detalii produs</h2><br />
 <form id="Detail" method="post" asp-controller="Home" asp-action="AddToCart">
     <input type="hidden" name="ID" value="@Model.Id" />
 
     <div class="row">
         <div class="col-md-8">
             <div class="form-group row">
-                <label asp-for="Name"></label>
+                <label asp-for="Name">Nume</label>
                 <input asp-for="Name" readonly="readonly" class="form-control"/>
             </div>
 
         <div class="form-group row">
             <div class="col-md-4">
-                <label asp-for="Price"></label>
+                <label asp-for="Price">Pret</label>
             </div>
             <div class="col-md-8">
                 <input asp-for="Price" readonly="readonly" class="form-control"/>
@@ -51,7 +51,7 @@
 
         <div class="form-group row">
             <div class="col-md-4">
-                <label asp-for="ProductColor"></label>
+                <label asp-for="ProductColor">Tara de Origine</label>
             </div>
             <div class="col-md-8">
                 <input asp-for="ProductColor" readonly="readonly" readonly="readonly" class="form-control"/>
@@ -61,7 +61,7 @@
 
         <div class="form-group row">
             <div class="col-md-4">
-                <label asp-for="ProductTypeId"></label>
+                <label asp-for="ProductTypeId">Categorie Id</label>
             </div>
             <div class="col-md-8">
                @* <select asp-for="ProductTypeId" asp-items="ViewBag.productTypeId" class="form-control"></select>*@
@@ -76,13 +76,13 @@
             <div class="col-8">
                 @if (product != null)
                     {
-                        <button type="submit" class="btn btn-danger form-control" asp-action="Remove" asp-route-id="@Model.Id">Remove from Cart</button>
+                        <button type="submit" class="btn btn-danger form-control" asp-action="Remove" asp-route-id="@Model.Id">STERGE DIN COS</button>
                     }
                     else
                     {
                         @if (User.IsInRole("User"))
                         {
-                           <button type="submit" class="btn btn-primary form-control" asp-action="AddToCart" asp-route-id="@Model.Id">Add to Cart</button>
+                           <button type="submit" class="btn btn-primary form-control" asp-action="AddToCart" asp-route-id="@Model.Id">ADAUGA IN COS</button>
                             @*<a asp-controller="Home" asp-action="Detail" class="btn btn-primary form-control"  asp-route-id="@Model.Id">Add to Cart</a>*@
                         }
                         else
@@ -96,7 +96,7 @@
         </div>
 
         <div class="form-group">
-            <a asp-action="Index" class="btn btn-success">Back to List</a>
+            <a asp-action="Index" class="btn btn-success">INAPOI LA CUMPARATURI</a>
         </div>
         </div>
         

@@ -3,19 +3,19 @@
 @{
     ViewData["Title"] = "Cart";
 }
-
-<h1>Your Cart</h1>
-
+<br />
+<h1><b>Cos de cumparaturi</b></h1>
+<br />
 <br/>
 <div class="row">
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Product Type</th>
-                <th>Color</th>
+                <th>PRODUS</th>
+                <th>NUME</th>
+                <th>PRET</th>
+                <th>CATEGORIE</th>
+                <th>TARA DE ORIGINE</th>
                 <th></th>
             </tr>
         </thead>
@@ -43,11 +43,11 @@
 </div>
 <div class="row">
     <div class="col-6">
-        <a asp-action="Index" asp-controller="Home" class="btn btn-success">Back to Home</a>
+        <a asp-action="Index" asp-controller="Home" class="btn btn-success">INAPOI LA CUMPARATURI</a>
     </div>
     <div class="col-6 text-right">
-        <h3>Total Amount</h3>
-        <h3>Grant Total : @Model.Sum(c=>c.Price) </h3>
-        <a asp-area="Customer" asp-action="Checkout" asp-controller="Order" class="btn btn-info">Process to Checkout</a>
+        <h3><b>TOTAL COS</b></h3>
+        <h3>Total : @Model.Sum(c=>c.Price) </h3>
+        <a asp-area="Customer" asp-action="Checkout" asp-controller="Order" class="btn btn-info">CONTINUA CU FINALIZAREA COMENZII</a>
     </div>
 </div>
