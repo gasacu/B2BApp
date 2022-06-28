@@ -17,8 +17,8 @@
     }
 }
 
-<br/>
-<h2 class="text-info">Detalii produs</h2><br />
+<br/><br />
+@*<h2 class="text-info"><b>Detalii produs</b></h2><br />*@
 <form id="Detail" method="post" asp-controller="Home" asp-action="AddToCart">
     <input type="hidden" name="ID" value="@Model.Id" />
 
@@ -26,15 +26,35 @@
         <div class="col-md-8">
             <div class="form-group row">
                 <label asp-for="Name">Nume</label>
-                <input asp-for="Name" readonly="readonly" class="form-control"/>
+                <div>@Model.Name</div>
             </div>
+
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label asp-for="ProductTypes.ProductType">Stil</label>
+            </div>
+            <div class="col-md-8">
+                <div>@Model.ProductTypes.ProductType</div>
+            </div>
+            <span asp-validation-for="ProductTypes.ProductType" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label asp-for="SpecialTags.SpecialTag">Brand</label>
+            </div>
+            <div class="col-md-8">
+                <div>@Model.SpecialTags.SpecialTag</div>
+            </div>
+            <span asp-validation-for="SpecialTags.SpecialTag" class="text-danger"></span>
+        </div>
 
         <div class="form-group row">
             <div class="col-md-4">
                 <label asp-for="Price">Pret</label>
             </div>
             <div class="col-md-8">
-                <input asp-for="Price" readonly="readonly" class="form-control"/>
+                <div>@Model.Price lei</div>
             </div>
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
@@ -54,22 +74,32 @@
                 <label asp-for="ProductColor">Tara de Origine</label>
             </div>
             <div class="col-md-8">
-                <input asp-for="ProductColor" readonly="readonly" readonly="readonly" class="form-control"/>
+                <div>@Model.ProductColor</div>
             </div>
             <span asp-validation-for="ProductColor" class="text-danger"></span>
         </div>
 
         <div class="form-group row">
             <div class="col-md-4">
-                <label asp-for="ProductTypeId">Categorie Id</label>
+                <label asp-for="ProductChar">Caracteristici</label>
             </div>
             <div class="col-md-8">
-               @* <select asp-for="ProductTypeId" asp-items="ViewBag.productTypeId" class="form-control"></select>*@
-               <input asp-for="ProductTypeId" readonly="readonly" class="form-control"/> 
+                <div>@Model.ProductChar</div>
             </div>
-            <span asp-validation-for="ProductTypeId" class="text-danger"></span>
+            <span asp-validation-for="ProductChar" class="text-danger"></span>
         </div>
 
+         <div class="form-group row">
+            <div class="col-md-4">
+                <label asp-for="ProductSummary">Descriere</label>
+            </div>
+            <div class="col-md-8"> 
+                       <div>@Model.ProductSummary</div>               
+            </div>
+            <span asp-validation-for="ProductSummary" class="text-danger"></span>
+        </div>
+
+        <br /><br />
         <div class="form-group row">
             <div class="col-4">
             </div>
@@ -82,7 +112,11 @@
                     {
                         @if (User.IsInRole("User"))
                         {
-                           <button type="submit" class="btn btn-primary form-control" asp-action="AddToCart" asp-route-id="@Model.Id">ADAUGA IN COS</button>
+                            @if (Model.IsAvailable)
+                        {
+                            <button type="submit" class="btn btn-primary form-control" asp-action="AddToCart" asp-route-id="@Model.Id">ADAUGA IN COS</button>
+                        }
+                        
                             @*<a asp-controller="Home" asp-action="Detail" class="btn btn-primary form-control"  asp-route-id="@Model.Id">Add to Cart</a>*@
                         }
                         else

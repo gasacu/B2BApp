@@ -29,5 +29,9 @@ namespace B2BApp.Models
         public int SpecialTagsId { get; set; }
         [ForeignKey("SpecialTagsId")]
         public SpecialTags SpecialTags { get; set; }
+        public string ProductSummary { get; set; }
+        public string ProductChar { get; set; }
+        public int Quantity { get; set; }
+       
     }
 }

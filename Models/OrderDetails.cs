@@ -16,6 +16,8 @@ namespace B2BApp.Models
         public Order Order { get; set; }
         [ForeignKey("ProductId")]
         public Products Product { get; set; }
+        public int Quantity { get; set; }
+
 
     }
 }

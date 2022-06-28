@@ -27,70 +27,133 @@ Pretul livrării urmează sa vi-l comunicam telefonic și depinde de locația li
 
         </div>
         <div class="col-md-6">
-             <div class="form-group row">
-               <div class="col-md-4">
-                    <label asp-for="Name">Nume Companie</label>
-               </div>
-               <div class="col-md-8">
-                  <input asp-for="Name" class="form-control"/>
-                  <span asp-validation-for="Name"  class="text-danger"></span>
-               </div>
+            <p> <b>DETALII DE FACTURARE</b></p><br/>
+            
+
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label for="">Ești persoană juridică?</label>
+                </div>
+                <div class="col-md-8">
+                    <label class="radio-container m-r-45">Da
+                        <input type="radio" name="PersJur" value="YES" onclick="text(0)" checked/>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio-container">Nu
+                        <input type="radio" name="PersJur" value="NO" onclick="text(1)" />
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+            <br/>
+            <div class="form-group row" id="mycode">
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label asp-for="Name">Nume Companie*</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input asp-for="Name" class="form-control"/>
+                        <span asp-validation-for="Name"  class="text-danger"></span>
+                    </div>
+                </div> 
+
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label asp-for="CompanyCui">Cod de identificare fiscala(CUI)*</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input asp-for="CompanyCui" class="form-control"/>
+                        <span asp-validation-for="CompanyCui" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label for="">Registrul Comertului</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input for="" class="form-control"/>
+                        <span asp-for="" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label for="">Banca</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input for="" class="form-control"/>
+                        <span asp-for="" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label for="">IBAN</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input for="" class="form-control"/>
+                        <span asp-for="" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label asp-for="PhoneNo">Telefon*</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input asp-for="PhoneNo" class="form-control"/>
+                        <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                    </div>  
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label asp-for="Address">Adresa*</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input asp-for="Address" class="form-control"/>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label asp-for="Email">Adresa de E-mail*</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input asp-for="Email" class="form-control"/> 
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label asp-for="OrderDate">Data livrare*</label>
+                        <p>(Alege o zi din intervalul urmatoarelor 5-7 zile lucratoare)</p>
+                    </div>
+                    <div class="col-md-8">
+                        <input asp-for="OrderDate" type="text" readonly="readonly" class="form-control"/>
+                        <span asp-validation-for="OrderDate" class="text-danger"></span>
+                    </div>
+                </div>
+
             </div>
 
-        <div class="form-group row">
-            <div class="col-md-4">
-                <label asp-for="PhoneNo">Telefon</label>
-            </div>
-            <div class="col-md-8">
-                <input asp-for="PhoneNo" class="form-control"/>
-                <span asp-validation-for="PhoneNo" class="text-danger"></span>
-            </div>
-            
+           
         </div>
-        
-        <div class="form-group row">
-            <div class="col-md-4">
-                <label asp-for="Address">Adresa</label>
-            </div>
-            <div class="col-md-8">
-                <input asp-for="Address" class="form-control"/>
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-            
-        </div>
-
-        <div class="form-group row">
-            <div class="col-md-4">
-                <label asp-for="Email"></label>
-            </div>
-            <div class="col-md-8">
-               @* <select asp-for="ProductTypeId" asp-items="ViewBag.productTypeId" class="form-control"></select>*@
-               <input asp-for="Email" class="form-control"/> 
-               <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            
-        </div>
-
-        <div class="form-group row">
-            <div class="col-md-4">
-                <label asp-for="OrderDate">Data</label>
-            </div>
-            <div class="col-md-8">
-                @*<select asp-for="SpecialTagsId" asp-items="ViewBag.TagId" class="form-control"></select>*@
-                <input asp-for="OrderDate" type="text" readonly="readonly" class="form-control"/>
-                <span asp-validation-for="OrderDate" class="text-danger"></span>
-            </div>
-            
-        </div>
-        </div>
+    
+    <br />  
            
         <div class="col-md-6">
-                <table class="table table-bordered">
+                <table class="table table-bordered" 
+                <p><b>COMANDA TA</b></p>
                 <thead>
                     <tr>
+                        <th>IMAGINE</th>
                         <th>PRODUS</th>
-                        <th>NUME</th>
-                        <th>PRET</th>
+                        <th>TOTAL</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -100,26 +163,35 @@ Pretul livrării urmează sa vi-l comunicam telefonic și depinde de locația li
                                 <td>
                                     <img src="~/@item.Image" height="100px" width="150px"/> 
                                 </td>
-                                <td>@item.Name</td>
-                                <td>@item.Price</td>
+                                <td><li class="fw-normal">@(item.Quantity) X @item.Name</li></td>
+                                <td>@(item.Price * item.Quantity) lei</td>
                             </tr>
                         }
                 </tbody>
                 </table>
                 <div class="text-right">
-                     <h3>Pret Total : @products.Sum(c=>c.Price)</h3>
+                     <h3><b>Pret Total :</b> @products.Sum(c=>c.Price*c.Quantity) lei</h3>
                 </div>
                 <div class="form-group text-right">
                     <input type="submit" value="PLASEAZA COMANDA" class="btn btn-success"/>
                 </div>  
-        </div>
-        
-     
-    </div>
+        </div>   
+    </div>    
 </form>
 
 @section Scripts{
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        function text(x) {
+            if (x == 0) document.getElementById("mycode").style.display = "block";
+            else document.getElementById("mycode").style.display = "none";
+            //else document.write("<h1>Ne pare rau! Trebuie sa fii firmă.</h1>");
+            return;
+        }
+    </script>
+
+
     <script>
         $(document).ready(function() {
             $( "#OrderDate").datepicker({

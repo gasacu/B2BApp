@@ -62,7 +62,7 @@ namespace B2BApp.Controllers
             {
                 return NotFound();
             }
-            var product = _db.Products.Include(c=>c.ProductTypes).FirstOrDefault(c => c.Id == id);
+            var product = _db.Products.Include(c=>c.ProductTypes).Include(c => c.SpecialTags).FirstOrDefault(c => c.Id == id);
             if(product==null)
             {
                 return NotFound();
@@ -91,10 +91,13 @@ namespace B2BApp.Controllers
                 products = new List<Products>();
             }
             products.Add(product);
+            product.Quantity++;
             HttpContext.Session.Set("products", products);
             return RedirectToAction(nameof(Index));
 
         }
+
+        
 
         //GET Remove Action Method
         [ActionName("Remove")]
@@ -113,8 +116,6 @@ namespace B2BApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
-
         //GET Product Cart Action Method
 
         public IActionResult Cart()
@@ -125,6 +126,54 @@ namespace B2BApp.Controllers
                 products = new List<Products>();
             }
             return View(products);
+        }
+
+        public IActionResult QtyPlus(int? id)
+        {
+            List<Products> products = HttpContext.Session.Get<List<Products>>("products");
+            if (products != null)
+            {
+                var product = products.FirstOrDefault(c => c.Id == id);
+                for (int i = 0; i < products.Count; i++)
+                {
+                    if(products[i].Id == id)
+                    {
+                        product = products[i];
+                    }
+                }
+                if (product != null)
+                {
+                    product.Quantity++;
+                    HttpContext.Session.Set("products", products);
+                }
+            }
+            return RedirectToAction(nameof(Cart));
+        }
+
+        public IActionResult QtyMinus(int? id)
+        {
+            List<Products> products = HttpContext.Session.Get<List<Products>>("products");
+            if (products != null)
+            {
+                var product = products.FirstOrDefault(c => c.Id == id);
+                for (int i = 0; i < products.Count; i++)
+                {
+                    if (products[i].Id == id)
+                    {
+                        product = products[i];
+                    }
+                }
+                if (product.Quantity > 1)
+                {
+                    product.Quantity--;
+                    HttpContext.Session.Set("products", products);
+                }
+                else
+                {
+                    return Content("Quantity cannot be less than 1!");
+                }
+            }
+            return RedirectToAction(nameof(Cart));
         }
 
     }

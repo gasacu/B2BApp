@@ -4,14 +4,16 @@ using B2BApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace B2BApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220626124401_AddProductCharDescription")]
+    partial class AddProductCharDescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,8 +29,6 @@ namespace B2BApp.Data.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired();
-
-                    b.Property<int>("CompanyCui");
 
                     b.Property<string>("Email")
                         .IsRequired();
@@ -57,8 +57,6 @@ namespace B2BApp.Data.Migrations
                     b.Property<int>("OrderId");
 
                     b.Property<int>("ProductId");
-
-                    b.Property<int>("Quantity");
 
                     b.HasKey("Id");
 
@@ -91,8 +89,6 @@ namespace B2BApp.Data.Migrations
                     b.Property<string>("ProductSummary");
 
                     b.Property<int>("ProductTypeId");
-
-                    b.Property<int>("Quantity");
 
                     b.Property<int>("SpecialTagsId");
 

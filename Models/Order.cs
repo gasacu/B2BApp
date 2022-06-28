@@ -28,6 +28,6 @@ namespace B2BApp.Models
 
         public DateTime OrderDate { get; set; }
         public virtual List<OrderDetails> OrderDetails { get; set; }
-
+        public int CompanyCui { get; set; }
     }
 }

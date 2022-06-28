@@ -2,6 +2,7 @@
 using B2BApp.Models;
 using B2BApp.Utility;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace B2BApp.Areas.Customer.Controllers
         }
 
         //GET Checkout Action Method
-       
+
         public IActionResult Checkout()
         {
             return View();
@@ -32,12 +33,12 @@ namespace B2BApp.Areas.Customer.Controllers
         public async Task<IActionResult> Checkout(Order anOrder)
         {
             List<Products> products = HttpContext.Session.Get<List<Products>>("products");
-            if(products != null)
+            if (products != null)
             {
                 foreach (var product in products)
                 {
                     OrderDetails orderDetails = new OrderDetails();
-                    orderDetails.ProductId = product.Id; 
+                    orderDetails.ProductId = product.Id;
                     anOrder.OrderDetails.Add(orderDetails);
                 }
             }
@@ -53,7 +54,6 @@ namespace B2BApp.Areas.Customer.Controllers
             int rowCount = _db.Orders.ToList().Count() + 1;
             return rowCount.ToString("000");
         }
-
 
     }
 }
