@@ -24,10 +24,31 @@ namespace B2BApp.Controllers
             _db = db;
         }
 
-        public IActionResult Index(int? page)
+        [HttpGet]
+        public ActionResult Index(string currentFilter, string searchString, int ?page)
         {
-            return View(_db.Products.Include(c => c.ProductTypes).Include(c => c.SpecialTags).ToList().ToPagedList(page ?? 1, 6));
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var empquery = from c in _db.Products select c;
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                empquery = empquery.Where(c=>c.Name.Contains(searchString));
+            }
+
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            return View(empquery.ToPagedList(pageNumber, pageSize)); 
         }
+
 
         public IActionResult About()
         {

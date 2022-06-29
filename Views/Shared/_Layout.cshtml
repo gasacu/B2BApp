@@ -67,10 +67,21 @@
                         <li><a asp-area="Admin" asp-controller="Product" asp-action="Index">Whisky</a></li>
                     }
                     
-                    <li><a asp-area="Customer" asp-controller="Home" asp-action="Cart">
+                    <li>
+                        <a asp-area="Customer" asp-controller="Home" asp-action="Cart">
                              <i class="fas fa-shopping-cart"></i>
                              (@count)
-                    </a></li>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+                            {
+                                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                                <input type="submit" value="Search" />
+                            }
+                        </a>
+                    </li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">Despre noi</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>

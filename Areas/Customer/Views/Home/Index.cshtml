@@ -1,11 +1,50 @@
 ﻿@using B2BApp.Models;
-@using X.PagedList.Mvc.Common
-@using X.PagedList.Mvc.Core
 @model X.PagedList.IPagedList<Products>
+@using X.PagedList.Mvc.Common;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@using X.PagedList.Mvc;
+
 @{
     ViewData["Title"] = "Home Page";
 }
-<br/><br/>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css"/>
+        <style>
+            #more {display: none;}
+        </style>
+    </head>
+    <body>
+        <h5><b>Home / Whisky</b></h5>
+        <h2><b>WHISKY</b></h2>
+        <p>Whisky este o băutură alcoolică preparată prin distilarea cerealelor, mai ales a orzului, a ovăzului sau a secarei. Folosit iniţial ca medicament, whisky-ul era consumat cu scopul de a prelungi viaţa.
+            <span id="dots"></span><span id="more">De altfel, studiind etimologia cuvântului aflăm că “uisge beatha”, sintagmă folosită de călugării irlandezi în Evul Mediu pentru a descrie băutura, înseamnă “apa vieţii”. 
+                Astăzi, sortimentele de whisky de cea mai bună calitate sunt produse în ţări cu tradiţie precum Scoţia, Irlanda, Statele Unite şi Canada. Procesul de fabricaţie constă în patru etape obligatorii: malţificarea, fermentaţia, distilarea şi învechirea. 
+                Aceste etape conturează caracterul, gustul, textura, individualitatea şi calitatea produsului finit. Whisky este una dintre cele mai populare şi apreciate băuturi alcoolice de pe glob.</span></p>
+                <button onclick="myFunction()" id="myBtn">Citeste mai mult</button>
+        <script>
+            function myFunction() {
+                var dots = document.getElementById("dots");
+                var moreText = document.getElementById("more");
+                var btnText = document.getElementById("myBtn");
+
+                if (dots.style.display === "none") {
+                    dots.style.display = "inline";
+                    btnText.innerHTML = "Citeste mai mult"; 
+                    moreText.style.display = "none";
+                } else {
+                    dots.style.display = "none";
+                    btnText.innerHTML = "Citeste mai putin"; 
+                    moreText.style.display = "inline";
+                    }
+                }
+        </script>
+    </body>
+    
+</html>
+
+
 <div class="row">
     @foreach  (var product in Model)
     {
@@ -29,7 +68,11 @@
         </div>
     }
 </div>
+
 <div>
-    @Html.PagedListPager(Model,c=>Href("~/Customer/Home/Index?page="+c),PagedListRenderOptionsBase.PageNumbersOnly)
+    Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) din @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFiletr = ViewBag.CurrentFilter }))
 </div>
+
+
 
