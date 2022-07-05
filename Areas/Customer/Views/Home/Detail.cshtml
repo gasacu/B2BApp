@@ -1,14 +1,10 @@
 ﻿@model B2BApp.Models.Products
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Session
-@{
-    ViewData["Title"] = "Details";
-}
 @using System.Net.Http
 @using B2BApp.Utility
 @inject IHttpContextAccessor HttpContextAccessor
 @{
-
     List<Products> products = HttpContextAccessor.HttpContext.Session.Get<List<Products>>("products");
     Products product = null;
     if(products != null)
@@ -16,19 +12,40 @@
         product = products.FirstOrDefault(c => c.Id == Model.Id);
     }
 }
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Detail</title>
+        <link href="/css/detail.css" rel="stylesheet" type="text/css" />
+        <script src="js/style.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+        <script type="text/javascript">
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        </script>
+    </head>
+    <body>
+     <video width="320" height="40" autoplay muted loop id="myVideo">
+            <source src="/Videos/movie.mp4" type="video/mp4">
+        </video> 
+ 
+  <form id="Detail" method="post" asp-controller="Home" asp-action="AddToCart">
+            <input type="hidden" name="ID" value="@Model.Id" />
 
-<br/><br />
-@*<h2 class="text-info"><b>Detalii produs</b></h2><br />*@
-<form id="Detail" method="post" asp-controller="Home" asp-action="AddToCart">
-    <input type="hidden" name="ID" value="@Model.Id" />
-
-    <div class="row">
-        <div class="col-md-8">
-            <div class="form-group row">
+    <div class="videomess" style="font-family:verdana; height: 650px; width: 670px;">
+        <div class="col-md-8" style="font-size: 14px; height: 700px; width: 600px; color: white;">
+            <div class="form-group row" style="font-size: 18px; color: white;">
                 <label asp-for="Name">Nume</label>
                 <div>@Model.Name</div>
             </div>
-
+        <hr />
         <div class="form-group row">
             <div class="col-md-4">
                 <label asp-for="ProductTypes.ProductType">Stil</label>
@@ -58,16 +75,6 @@
             </div>
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
-
-       @* <div class="form-group row">
-            <div class="col-4">
-                <label asp-for="Image"></label>
-            </div>
-            <div class="col-8">
-                <input asp-for="Image" class="form-control" type="file" />
-            </div>
-            <span asp-validation-for="Image" class="text-danger"></span>
-        </div>*@
 
         <div class="form-group row">
             <div class="col-md-4">
@@ -99,11 +106,11 @@
             <span asp-validation-for="ProductSummary" class="text-danger"></span>
         </div>
 
-        <br /><br />
+        <br />
         <div class="form-group row">
             <div class="col-4">
             </div>
-            <div class="col-8">
+            <div class="col-8" style="font-family:verdana;">
                 @if (product != null)
                     {
                         <button type="submit" class="btn btn-danger form-control" asp-action="Remove" asp-route-id="@Model.Id">STERGE DIN COS</button>
@@ -114,43 +121,45 @@
                         {
                             @if (Model.IsAvailable)
                         {
-                            <button type="submit" class="btn btn-primary form-control" asp-action="AddToCart" asp-route-id="@Model.Id">ADAUGA IN COS</button>
+                            <button type="submit" class="btnad" asp-action="AddToCart" asp-route-id="@Model.Id">ADAUGA IN COS <i class="fas fa-cart-plus"></i></button>
                         }
                         
-                            @*<a asp-controller="Home" asp-action="Detail" class="btn btn-primary form-control"  asp-route-id="@Model.Id">Add to Cart</a>*@
+                            
                         }
                         else
                         {
-                           <a asp-area="Identity" asp-page="/Account/Login">Autentifica-te pentru a putea plasa o comanda.</a> 
+                           <a asp-area="Identity" asp-page="/Account/Login" class="auth">Autentifica-te pentru a putea plasa o comanda.</a> 
                            
                         }
 
                     }  
             </div>
         </div>
-
-        <div class="form-group">
-            <a asp-action="Index" class="btn btn-success">INAPOI LA CUMPARATURI</a>
         </div>
-        </div>
-        
-        <div class="col-md-4">
+       </div>
+    </form>    
+       
+ <div class="col-md-4 imgbtn">
             <div class="thumb">
-                <img src="~/@Model.Image"  width="100%" style="border-radius: 5px; border: 1px solid #efefef" id= "DetailImage"/>
+                <img src="~/@Model.Image" width="420" height="365" id="DetailImage"/>
                  @if (Model.IsAvailable)
                  {
-                         <img src="/Images/instock-logo.JPG" width="300px" height="100px" />
+                         <img src="/Images/instock-logo.JPG" width="200px" height="100px" />
                  }
                  else
                     {
                          <img src="/Images/outofstock.JPG" width="200px" height="100px" />
                     }
             </div>
-        </div>
-       
-    </div>
-</form>
+            <br />
+            <hr />
+            <div class="form-group">
+                     <a asp-action="Index" class="btncump">INAPOI LA CUMPARATURI</a>
+            </div>     
+      <br />
+ </div>  
 
-@section Scripts{
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    </body>
+</html>
+
+

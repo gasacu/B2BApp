@@ -1,0 +1,6 @@
+﻿.container body-content {
+    clear: both;
+    position: relative;
+    height: 200px;
+    margin-top: -200px;
+}

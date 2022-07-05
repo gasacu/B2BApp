@@ -1,13 +1,27 @@
 ﻿@using B2BApp.Models
 @model List<Products>
+<html>
+    <head>
+        <link href="/css/cart.css" rel="stylesheet" type="text/css" />
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
 
-<br />
-<h1 class="text-info"><b>Cos de cumparaturi</b></h1>
-<br />
-<br/>
-<div class="row">
+            th, td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #DDD;
+            }
 
-    <table class="table table-bordered">
+            tr:hover {background-color: #D6EEEE;}
+        </style>
+    </head>
+    <body>
+        <h2 style="font-family:verdana; text-align:center;">COSUL TAU<i class="fas fa-cart-arrow-down"></i></h2>
+        <br />
+    <table>
         <thead>
             <tr>
                 <th>PRODUS</th>
@@ -24,7 +38,7 @@
             {
                 <tr>
                     <td>
-                        <img src="~/@item.Image" width="200px" height="140px"/>
+                        <img src="~/@item.Image" width="110px" height="110px"/>
                     </td>
                     <td>@item.Name</td>
                     <td>@item.Price lei</td>
@@ -32,14 +46,12 @@
                     <td>
                         <div>
                             <a href="@Url.Action("QtyMinus","Home",new{id=item.Id})">
-                                <i class="fa fa-minus-circle"></i>
+                                <i class="fas fa-minus-circle"></i>
                             </a>
                             @item.Quantity
-                            &nbsp;<span id="error"></span> 
                             <a href="@Url.Action("QtyPlus","Home",new{id=item.Id})">
                                 <i class="fa fa-plus-circle"></i>
                             </a>
-                            
                         </div>
                     </td>
                     <td>@(item.Price * item.Quantity) lei</td>
@@ -49,39 +61,21 @@
                         </a>
                     </td>
                 </tr>
-
             }
         </tbody>
     </table>
-</div>
-<div class="row">
-    <div class="col-6">
-        <a asp-action="Index" asp-controller="Home" class="btn btn-success">INAPOI LA CUMPARATURI</a>
+    <br />
+<div class="row" style="font-family:verdana; font-size: 12px; ">
+    <div class="btnback">
+        <a asp-action="Index" asp-controller="Home">INAPOI LA CUMPARATURI</a>
     </div>
-    <div class="col-6 text-right">
+    <div class="col-md-8" align="right">
         <h3><b>TOTAL COS</b></h3>
         <h3><b>Total :</b> @Model.Sum(c=>c.Price*c.Quantity) lei</h3>
-        <a asp-area="Customer" asp-action="Checkout" asp-controller="Order" class="btn btn-info">CONTINUA CU FINALIZAREA COMENZII</a>
+        <a asp-area="Customer" asp-action="Checkout" asp-controller="Order" class="fcom" style="background-color: #4CAF50;
+    border: none; color: white; padding: 13px 32px; text-align: center; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);">CONTINUA CU FINALIZAREA COMENZII</a>
     </div>
 </div>
-
-
-@section Scripts{
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
-    <script type="text/javascript">
-         $(document).ready(function(){
-             //called when key is pressed in textbox
-             $("#quantity").keypress(function(e){
-                  //if the letter in not a digit, 
-                  if(e.which != 8 && e.which != 0 && (e.which <48 || e.which > 57)) {
-                        //we will display error message
-                        $("#error").html("Enter digits only!").show().fadeOut("slow");
-                        return false;
-                  }
-             });
-         });     
-    </script>
-
-
-}
+    </body>
+</html>

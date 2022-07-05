@@ -4,75 +4,101 @@
 @using X.PagedList.Mvc.Core;
 @using X.PagedList;
 @using X.PagedList.Mvc;
-
-@{
-    ViewData["Title"] = "Home Page";
-}
+<!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="style.css"/>
-        <style>
-            #more {display: none;}
-        </style>
-    </head>
-    <body>
-        <h5><b>Home / Whisky</b></h5>
-        <h2><b>WHISKY</b></h2>
-        <p>Whisky este o băutură alcoolică preparată prin distilarea cerealelor, mai ales a orzului, a ovăzului sau a secarei. Folosit iniţial ca medicament, whisky-ul era consumat cu scopul de a prelungi viaţa.
-            <span id="dots"></span><span id="more">De altfel, studiind etimologia cuvântului aflăm că “uisge beatha”, sintagmă folosită de călugării irlandezi în Evul Mediu pentru a descrie băutura, înseamnă “apa vieţii”. 
-                Astăzi, sortimentele de whisky de cea mai bună calitate sunt produse în ţări cu tradiţie precum Scoţia, Irlanda, Statele Unite şi Canada. Procesul de fabricaţie constă în patru etape obligatorii: malţificarea, fermentaţia, distilarea şi învechirea. 
-                Aceste etape conturează caracterul, gustul, textura, individualitatea şi calitatea produsului finit. Whisky este una dintre cele mai populare şi apreciate băuturi alcoolice de pe glob.</span></p>
-                <button onclick="myFunction()" id="myBtn">Citeste mai mult</button>
-        <script>
+        <title>Home</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript">
             function myFunction() {
                 var dots = document.getElementById("dots");
                 var moreText = document.getElementById("more");
                 var btnText = document.getElementById("myBtn");
 
-                if (dots.style.display === "none") {
-                    dots.style.display = "inline";
-                    btnText.innerHTML = "Citeste mai mult"; 
-                    moreText.style.display = "none";
-                } else {
+                if (dots.style.display != "none") {
                     dots.style.display = "none";
-                    btnText.innerHTML = "Citeste mai putin"; 
-                    moreText.style.display = "inline";
+                    moreText.style.display= "inline";
+                    btnText.innerHTML = "Citeste mai putin."; 
+                } else {
+                    dots.style.display = "inline";
+                    moreText.style.display = "none";
+                    btnText.innerHTML="Citeste mai mult..";
                     }
-                }
+            }
         </script>
-    </body>
-    
-</html>
-
-
+        <script src="js/style.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    </head>
+    <body>
+        <h1>Home / Whisky</h1>
+        <hr />
+        <div class="container">
+            <div class="banner">
+                <img src="/Images/1.jpg" alt="Images" />
+                <h2 class="heading">WHISKY</h2>
+                <p class="heading2">Whisky este o băutură alcoolică preparată prin distilarea cerealelor, mai ales a orzului, a ovăzului sau a secarei. Folosit iniţial ca medicament, whisky-ul era consumat cu scopul de a prelungi viaţa.
+                <span id="dots"></span><span id="more">De altfel, studiind etimologia cuvântului aflăm că “uisge beatha”, sintagmă folosită de călugării irlandezi în Evul Mediu pentru a descrie băutura, înseamnă “apa vieţii”. 
+                Astăzi, sortimentele de whisky de cea mai bună calitate sunt produse în ţări cu tradiţie precum Scoţia, Irlanda, Statele Unite şi Canada. Procesul de fabricaţie constă în patru etape obligatorii: malţificarea, fermentaţia, distilarea şi învechirea. 
+                Aceste etape conturează caracterul, gustul, textura, individualitatea şi calitatea produsului finit. Whisky este una dintre cele mai populare şi apreciate băuturi alcoolice de pe glob.
+                </span>            
+                </p>
+            </div>
+            <a class="heading3" onclick="myFunction()" id="myBtn">Citeste mai mult</a>
+        </div>    
+        <hr />
 <div class="row">
     @foreach  (var product in Model)
     {
         <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">
-                        <label style="font-size: 20px;color: black">@product.Name</label>
-                    </h4>
+            <div class="polaroid">
+                <img src="~/@product.Image" alt="Card Image" class="img" style="height: 240px;"/>
+                <br>
+                <div class="container2">
+                    <p1>
+                        <label style="font-family:verdana; color: black;">@product.Name</label>
+                    </p1>
+                    <br>
+                    <p2>
+                        <label style="font-family:verdana; color: red;"><b>Pret : @product.Price</b>lei</label>
+                    </p2>
+                    <br>
+                    <div class="middle">
+                        <a asp-action="Detail" asp-controller="Home" asp-route-id="@product.Id" class="btn2" style="vertical-align: middle; background-color: black;"><span>DETALII </span></a>
+                    </div>
+                    
                 </div>
-                <img src="~/@product.Image" alt="Card Image" class="card-img-top" style="height: 300px;"/>
-                <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <label style="font-size: 20px;color: #a51313"><b>Price : @product.Price</b>lei</label>
-                        </div>
-                        <a asp-action="Detail" asp-controller="Home" asp-route-id="@product.Id" class="btn btn-info media-right">DETALII</a>
-                    </div><br/><br/><br/><br/><br/><br/>
-                </div>
+                <br>
             </div>  
         </div>
     }
 </div>
-
-<div>
-    Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) din @Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFiletr = ViewBag.CurrentFilter }))
+<div class="pagebt" style="font-family: verdana;">
+    <div class="button5">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFiletr = ViewBag.CurrentFilter }))
+    </div>
+    <div class="pageinfo">
+        Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) din @Model.PageCount
+    </div>
+    
 </div>
+    </body>
+</html>
+
+
+
+
+
+
+
+
 
 
 

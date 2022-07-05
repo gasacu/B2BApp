@@ -49,6 +49,13 @@ namespace B2BApp.Controllers
             return View(empquery.ToPagedList(pageNumber, pageSize)); 
         }
 
+        
+        
+        [HttpGet]
+        private bool ProductExists(int id)
+        {
+            return _db.Products.Any(p => p.Id == id);
+        }
 
         public IActionResult About()
         {
@@ -134,7 +141,7 @@ namespace B2BApp.Controllers
                     HttpContext.Session.Set("products", products);
                 }
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Cart));
         }
 
         //GET Product Cart Action Method

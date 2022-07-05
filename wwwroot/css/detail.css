@@ -1,0 +1,99 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+.btncump {
+    background-color: black; 
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    float: left;
+}
+
+.auth {
+    float: left;
+}
+
+.btnad {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 1px 2px;
+    cursor: pointer;
+    width: 250px;
+    float: right;
+}
+
+#myVideo {
+    display: block;
+
+    position: absolute;
+    margin-left: 350px;
+    margin-right: 200px;
+    bottom: 0px;
+    min-width: 100%;
+    min-height: 95%;
+}
+
+.videomess {
+    position: relative;
+    bottom: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    color: #f1f1f1;
+    height: 850px;
+    width: 66%;
+    padding: 30px;
+    float: right;
+}
+
+#DetailImage {
+    max-width: 200px;
+    height: auto;
+    width: 83.33%;
+}
+
+.col-md-4 imgbtn {
+    float: left;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+
+
+

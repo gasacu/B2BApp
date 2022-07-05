@@ -15,26 +15,29 @@
     }
 }
 <br/>
+<html>
+<body>
 
-<h2 class="text-info">DETALII LIVRARE</h2><br />
-<p>Dacă aveți o comandă care depăşește greutatea de 50 kg, comanda va fi pregătită pe palet şi expediată prin compania de transport Pall-Ex.
+</body>
+</html>
+<h2 style="font-family:verdana; text-align:center;">DETALII LIVRARE</h2><hr />
+<p style="font-family:verdana;">Dacă aveți o comandă care depăşește greutatea de 50 kg, comanda va fi pregătită pe palet şi expediată prin compania de transport Pall-Ex.
 Pretul livrării urmează sa vi-l comunicam telefonic și depinde de locația livrării și de greutatea acesteia.</p>
-<br />
+<hr />
+
 <form id="Order" asp-controller="Order" asp-action="Checkout" method="post" enctype="multipart/form-data">
 
-    <div class="p-4 rounded border row">
+    <div class="p-4 rounded border row" style="font-family:verdana;">
         <div asp-validation-sumarry="ModelOnly" class="text-danger">
-
         </div>
         <div class="col-md-6">
-            <p> <b>DETALII DE FACTURARE</b></p><br/>
-            
-
-            <div class="form-group row">
+            <p> <b>DETALII DE FACTURARE</b></p>
+            <hr />
+            <div class="form-group row" style="font-size:12px;">
                 <div class="col-md-4">
                     <label for="">Ești persoană juridică?</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8" style="font-size:12px;">
                     <label class="radio-container m-r-45">Da
                         <input type="radio" name="PersJur" value="YES" onclick="text(0)" checked/>
                         <span class="checkmark"></span>
@@ -45,8 +48,8 @@ Pretul livrării urmează sa vi-l comunicam telefonic și depinde de locația li
                     </label>
                 </div>
             </div>
-            <br/>
-            <div class="form-group row" id="mycode">
+            
+            <div class="form-group row" id="mycode" style="font-size:12px;"> 
                 <div class="form-group row">
                     <div class="col-md-4">
                         <label asp-for="Name">Nume Companie*</label>
@@ -137,17 +140,13 @@ Pretul livrării urmează sa vi-l comunicam telefonic și depinde de locația li
                         <span asp-validation-for="OrderDate" class="text-danger"></span>
                     </div>
                 </div>
-
             </div>
-
-           
         </div>
-    
-    <br />  
-           
-        <div class="col-md-6">
-                <table class="table table-bordered" 
-                <p><b>COMANDA TA</b></p>
+        <br />
+    <hr />
+        <div class="col-md-6" style="font-size:12px;">
+                <table class="table table-bordered">
+                <p><b><i class="fas fa-shopping-bag"></i> COMANDA TA</b></p>
                 <thead>
                     <tr>
                         <th>IMAGINE</th>
@@ -169,8 +168,10 @@ Pretul livrării urmează sa vi-l comunicam telefonic și depinde de locația li
                         }
                 </tbody>
                 </table>
+                <hr />
                 <div class="text-right">
-                     <h3><b>Pret Total :</b> @products.Sum(c=>c.Price*c.Quantity) lei</h3>
+                     <h3 style="font-size: 19px"><b>Pret Total :</b> @products.Sum(c=>c.Price*c.Quantity) lei
+                         <br /><h4>(TVA inclus)</h4></h3>
                 </div>
                 <div class="form-group text-right">
                     <input type="submit" value="PLASEAZA COMANDA" class="btn btn-success"/>
@@ -185,8 +186,8 @@ Pretul livrării urmează sa vi-l comunicam telefonic și depinde de locația li
     <script>
         function text(x) {
             if (x == 0) document.getElementById("mycode").style.display = "block";
-            else document.getElementById("mycode").style.display = "none";
-            //else document.write("<h1>Ne pare rau! Trebuie sa fii firmă.</h1>");
+            //else document.getElementById("mycode").style.display = "none";
+            else document.write("<h1>Ne pare rau! Nu poti plasa o comanda, trebuie sa fii firmă.</h1>");
             return;
         }
     </script>
